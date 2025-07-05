@@ -70,4 +70,13 @@ public class StringCalculatorTest {
         assertEquals(10, calc.add("//[##]\n2##3##5"));
         assertEquals(3, calc.add("//[abc]\n1abc2"));
     }
+
+    @Test
+    public void testMultipleCustomDelimiters() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(6, calc.add("//[*][%]\n1*2%3"));
+        assertEquals(6, calc.add("//[+][--]\n1+2--3"));
+        assertEquals(10, calc.add("//[!][@][#]\n1!2@3#4"));
+    }
+
 }

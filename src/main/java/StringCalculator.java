@@ -1,3 +1,4 @@
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -11,17 +12,20 @@ public class StringCalculator {
             String delimiterPattern = "[,\n]";
             String numberPart = numbers;
 
-
             if (numbers.startsWith("//")) {
                 int newlineIndex = numbers.indexOf("\n");
-
                 String delimiterDef = numbers.substring(2, newlineIndex);
                 numberPart = numbers.substring(newlineIndex + 1);
 
                 if (delimiterDef.startsWith("[") && delimiterDef.endsWith("]")) {
 
-                    delimiterDef = delimiterDef.substring(1, delimiterDef.length() - 1);
-                    delimiterPattern = Pattern.quote(delimiterDef);
+                    Matcher m = Pattern.compile("\\[(.*?)]").matcher(delimiterDef);
+                    StringBuilder patternBuilder = new StringBuilder();
+                    while (m.find()) {
+                        if (!patternBuilder.isEmpty()) patternBuilder.append("|");
+                        patternBuilder.append(Pattern.quote(m.group(1)));
+                    }
+                    delimiterPattern = patternBuilder.toString();
                 } else {
 
                     delimiterPattern = Pattern.quote(delimiterDef);
