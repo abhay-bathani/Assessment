@@ -10,7 +10,7 @@ public class StringCalculator {
             int sum = 0;
 
             for (String num : parts) {
-                sum += Integer.parseInt(num);
+                sum += Integer.parseInt(num.trim());
             }
 
             return sum;
