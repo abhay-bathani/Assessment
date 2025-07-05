@@ -14,4 +14,10 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(5, calc.add("5"));
     }
+
+    @Test
+    public void testTwoNumbersReturnsSum() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(8, calc.add("3,5"));
+    }
 }
