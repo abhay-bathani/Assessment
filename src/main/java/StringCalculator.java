@@ -6,7 +6,9 @@ public class StringCalculator {
                 return 0;
             }
 
-            String[] parts = numbers.split(",");
+            String unified = numbers.replace("\n", ",");
+
+            String[] parts = unified.split(",");
             int sum = 0;
 
             for (String num : parts) {
