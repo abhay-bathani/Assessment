@@ -8,19 +8,27 @@ public class StringCalculator {
                 return 0;
             }
 
-            String delimiter = "[,\n]";
+            String delimiterPattern = "[,\n]";
             String numberPart = numbers;
 
 
             if (numbers.startsWith("//")) {
+                int newlineIndex = numbers.indexOf("\n");
 
-                int delimiterEnd = numbers.indexOf("\n");
-                delimiter = Pattern.quote(numbers.substring(2, delimiterEnd));
-                numberPart = numbers.substring(delimiterEnd + 1);
+                String delimiterDef = numbers.substring(2, newlineIndex);
+                numberPart = numbers.substring(newlineIndex + 1);
+
+                if (delimiterDef.startsWith("[") && delimiterDef.endsWith("]")) {
+
+                    delimiterDef = delimiterDef.substring(1, delimiterDef.length() - 1);
+                    delimiterPattern = Pattern.quote(delimiterDef);
+                } else {
+
+                    delimiterPattern = Pattern.quote(delimiterDef);
+                }
             }
 
-
-            String[] parts = numberPart.split(delimiter);
+            String[] parts = numberPart.split(delimiterPattern);
             int sum = 0;
 
             for (String num : parts) {

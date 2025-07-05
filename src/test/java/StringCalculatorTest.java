@@ -59,11 +59,15 @@ public class StringCalculatorTest {
     public void testIgnoreNumbersGreaterThan1000() {
         StringCalculator calc = new StringCalculator();
         assertEquals(2, calc.add("2,1001"));
-        assertEquals(1001, calc.add("1000,1"));  // 1000 is valid
+        assertEquals(1001, calc.add("1000,1"));
         assertEquals(1004, calc.add("999,1001,5"));
     }
 
-
-
-
+    @Test
+    public void testCustomDelimiterOfAnyLength() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(6, calc.add("//[***]\n1***2***3"));
+        assertEquals(10, calc.add("//[##]\n2##3##5"));
+        assertEquals(3, calc.add("//[abc]\n1abc2"));
+    }
 }
