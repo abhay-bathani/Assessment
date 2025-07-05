@@ -8,4 +8,10 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         assertEquals(0, calc.add(""));
     }
+
+    @Test
+    public void testSingleNumberReturnsItself() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(5, calc.add("5"));
+    }
 }
