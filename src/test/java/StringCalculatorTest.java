@@ -55,6 +55,15 @@ public class StringCalculatorTest {
         assertEquals(6, calc.add("1\n2,3"));
     }
 
+    @Test
+    public void testIgnoreNumbersGreaterThan1000() {
+        StringCalculator calc = new StringCalculator();
+        assertEquals(2, calc.add("2,1001"));
+        assertEquals(1001, calc.add("1000,1"));  // 1000 is valid
+        assertEquals(1004, calc.add("999,1001,5"));
+    }
+
+
 
 
 }

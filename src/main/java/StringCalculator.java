@@ -24,7 +24,10 @@ public class StringCalculator {
             int sum = 0;
 
             for (String num : parts) {
-                sum += Integer.parseInt(num.trim());
+                int value = Integer.parseInt(num.trim());
+                if (value <= 1000) {
+                    sum += value;
+                }
             }
 
             return sum;
